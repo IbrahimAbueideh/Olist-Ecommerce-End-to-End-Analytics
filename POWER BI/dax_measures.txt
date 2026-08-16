@@ -1,0 +1,52 @@
+/* =====================================================================
+   اسم الجدول: Dim_Date (جدول التاريخ المرجعي)
+   الوصف: جدول تاريخ تقويمي مخصص لدعم التحليل الزمني (Time Intelligence)
+   مثل مقارنة أداء المبيعات عبر السنوات، الأرباع، والأشهر.
+   ===================================================================== */
+
+Dim_Date = 
+-- تحديد أصغر وأكبر سنة للشراء في جدول الطلبات
+VAR MinDate = MIN(olist_orders_dataset[order_purchase_timestamp])
+VAR MaxDate = MAX(olist_orders_dataset[order_purchase_timestamp])
+VAR MinYear = IF(ISBLANK(MinDate), 2016, YEAR(MinDate))
+VAR MaxYear = IF(ISBLANK(MaxDate), 2018, YEAR(MaxDate))
+
+RETURN
+ADDCOLUMNS (
+    -- إنشاء تسلسل الأيام التقويمية الكاملة
+    CALENDAR(DATE(MinYear, 1, 1), DATE(MaxYear, 12, 31)),
+    
+    -- استخراج أبعاد التاريخ المختلفة
+    "Year", YEAR([Date]),                                -- السنة (مثل: 2017, 2018)
+    "Month_No", MONTH([Date]),                           -- رقم الشهر (1 إلى 12) لترتيب الأشهر
+    "Month_Name", FORMAT([Date], "MMM"),                 -- اسم الشهر المختصر (Jan, Feb, Mar)
+    "Year_Month", FORMAT([Date], "YYYY-MM"),             -- السنة والشهر للاتجاهات الشهرية
+    "Quarter", "Q" & FORMAT([Date], "Q")                 -- الربع السنوي (Q1, Q2, Q3, Q4)
+)
+===================================================================== */
+
+إجمالي الإيرادات
+Total Revenue = SUM(olist_order_items_dataset[price])
+===================================================================== */
+
+إجمالي عدد الطلبات
+Total Orders = DISTINCTCOUNT(olist_orders_dataset[order_id])
+===================================================================== */
+
+متوسط قيمة الطلب
+AOV = DIVIDE([Total Revenue], [Total Orders], 0)
+===================================================================== */
+
+متوسط تقييم العملاء
+Avg Review Score = AVERAGE(olist_order_reviews_dataset[review_score])
+===================================================================== */
+
+نسبة الطلبات المتأخرة
+Delay Rate = 
+VAR DelayedOrders = 
+    CALCULATE(
+        [Total Orders],
+        olist_orders_dataset[order_delivered_customer_date] > olist_orders_dataset[order_estimated_delivery_date]
+    )
+RETURN
+DIVIDE(DelayedOrders, [Total Orders], 0)
