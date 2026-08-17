@@ -1,23 +1,24 @@
-# 🛒 Olist E-Commerce End-to-End Data Analytics & BI Project
+# 🛒 Brazilian Olist E-Commerce End-to-End Data Analytics & BI Project
 
-An end-to-end data analytics project analyzing the Brazilian Olist E-Commerce dataset across 100k+ orders from 2016 to 2018. This project covers data modeling, SQL cleaning, financial summary validation in Excel, and an interactive Power BI Executive Dashboard.
+An end-to-end data analytics project analyzing the Brazilian Olist E-Commerce dataset across 99K+ orders (2016–2018). This project covers SQL/Oracle data cleaning, Excel customer cohort & business summary validation, and an interactive Power BI Executive Dashboard built on a Star Schema architecture.
 
 ---
 
 ## 📌 Project Architecture & Workflow
 
 1. **Data Cleaning & Modeling (SQL / Oracle Database):**
-   - Cleaned, normalized, and transformed relational tables.
+   - Cleaned, normalized, and validated relational datasets.
    - Handled missing values, timestamps, and localized Brazilian product categories into English.
-2. **Business Summary (Excel):**
-   - Pre-computed core KPI benchmarks and cross-verified revenue, order counts, and delivery metrics.
+2. **Business Summary & Customer Segmentation (Excel):**
+   - Segmented customers by purchase frequency and calculated Average Customer Lifetime Value (CLV).
+   - Cross-verified overall gross revenue, order volumes, and average order values.
 3. **Data Modeling (Power BI Star Schema):**
-   - Implemented a clean Star Schema with 1-to-Many single-direction relationships to optimize query performance.
-   - Generated a dedicated `Dim_Date` calendar table for full Time Intelligence support.
+   - Implemented a Star Schema with 1-to-Many relationships to optimize filter flow.
+   - Developed a dedicated `Dim_Date` calendar table to enable Time Intelligence analytics.
 4. **DAX Measures & KPIs:**
-   - Authored dynamic business logic stored inside an isolated `_Measures` table (Revenue, Orders, AOV, Avg Review Score, Delay Rate).
+   - Authored key business logic inside an isolated `_Measures` table (`Total Revenue`, `Total Orders`, `AOV`, `Delay Rate`, `Avg Review Score`).
 5. **Interactive Executive Dashboard:**
-   - Designed a dynamic Power BI report featuring responsive visuals, cross-filtering, Top-N ranking, and categorical breakdowns.
+   - Designed a dynamic report featuring cross-filtering, Top-10 category rankings, and payment channel distribution.
 
 ---
 
@@ -37,13 +38,13 @@ An end-to-end data analytics project analyzing the Brazilian Olist E-Commerce da
 
 ---
 
-## 📈 Excel Business Summary
+## 📈 Excel Customer Segmentation & Lifetime Value
 
 ![Excel Business Summary](EXCLE/4_Excel_Summary.png)
 
 ---
 
-## ⚙️ Key DAX Measures (`POWER BI/dax_measures.txt`)
+## ⚙️ Core DAX Measures (`POWER BI/dax_measures.txt`)
 
 ```dax
 -- Total Revenue
