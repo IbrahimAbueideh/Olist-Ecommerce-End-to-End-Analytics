@@ -1,3 +1,4 @@
+<img width="873" height="488" alt="DASHBOARD" src="https://github.com/user-attachments/assets/bcaeb191-6f51-4219-9e14-382cb50ac6d4" />
 # 🛒 Brazilian Olist E-Commerce End-to-End Data Analytics & BI Project
 
 An end-to-end data analytics project analyzing the Brazilian Olist E-Commerce dataset across 99K+ orders (2016–2018). This project covers SQL/Oracle data cleaning, Excel customer cohort & business summary validation, and an interactive Power BI Executive Dashboard built on a Star Schema architecture.
